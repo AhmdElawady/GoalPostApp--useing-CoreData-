@@ -9,6 +9,8 @@
 import UIKit
 import CoreData
 
+let appDelegate = UIApplication.shared.delegate as? AppDelegate
+
 class GoalsVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
@@ -22,7 +24,8 @@ class GoalsVC: UIViewController {
     }
 
     @IBAction func addGoalButtonPressed(_ sender: Any) {
-        print("add Goal pressed")
+        guard let createGoalVC = storyboard?.instantiateViewController(identifier: "CreateGoalVC") else { return }
+        presentDetail(createGoalVC)
     }
     
 }
@@ -37,7 +40,7 @@ extension GoalsVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "GoalCell", for: indexPath) as? GoalCell else {return UITableViewCell()}
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "GoalCell", for: indexPath) as? GoalCell else { return UITableViewCell() }
         cell.cofigureCell(description: "Eat Salad twice a week", type: .shortTerm , goalProgressAmount: 2)
         
         return cell
