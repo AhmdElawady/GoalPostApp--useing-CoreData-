@@ -58,7 +58,4 @@ class FinishGoalVC: UIViewController, UITextFieldDelegate {
             completion(false)
         }
     }
-    
-    
-
 }

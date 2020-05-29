@@ -13,10 +13,16 @@ class GoalCell: UITableViewCell {
     @IBOutlet weak var goalDescriptionLabel: UILabel!
     @IBOutlet weak var goalTybeLabel: UILabel!
     @IBOutlet weak var goalProgressLabel: UILabel!
-    
-    func cofigureCell(description: String, type: GoalType, goalProgressAmount: Int) {
-        self.goalDescriptionLabel.text = description
-        self.goalTybeLabel.text = type.rawValue
-        self.goalProgressLabel.text = String(describing: goalProgressAmount)
+    @IBOutlet weak var completionView: UIView!
+    func cofigureCell(goal: Goal) {
+        self.goalDescriptionLabel.text = goal.goalDescription
+        self.goalTybeLabel.text = goal.goalType
+        self.goalProgressLabel.text = String(goal.goalProgress)
+        
+        if goal.goalProgress == goal.goalComletionValue {
+            self.completionView.isHidden = false
+        } else {
+            self.completionView.isHidden = true
+        }
     }
 }
